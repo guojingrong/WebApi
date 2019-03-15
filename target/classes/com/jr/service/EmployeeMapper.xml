@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jr.service.EmployeeMapper">
+	<!-- 使用索引 不使用ParamType -->
+	<select id="getEmpListByPage" resultType="emp"
+		parameterType="map">
+		select * from EmpBaseInfo
+		<where>
+			<!-- <if test="code!=''">and Code=#{code}</if> -->
+			<!-- $占位符 and Name like '%${name}%' -->
+			<!-- <if test="name!=''">and Name like CONCAT(CONCAT('%',#{name}),'%')</if> -->
+			<if test="key!=''">
+				and (Name like CONCAT(CONCAT('%',#{key}),'%') or Account like
+				CONCAT(CONCAT('%',#{key}),'%') or Mobile like
+				CONCAT(CONCAT('%',#{key}),'%'))
+			</if>
+			<if test="status!=-1">and Status=#{status}</if>
+		</where>
+		ORDER BY code DESC LIMIT #{skipNum},#{pageSize}
+	</select>
+
+	<select id="getEmpCount" resultType="int">
+		select count(id) from EmpBaseInfo
+		<where>
+			<!-- <if test="code!=''">and Code=#{code}</if> <if test="name!=''">and 
+				Name like '%${name}%'</if> -->
+			<if test="key!=''">
+				and (Name like CONCAT(CONCAT('%',#{key}),'%') or Account like
+				CONCAT(CONCAT('%',#{key}),'%') or Mobile like
+				CONCAT(CONCAT('%',#{key}),'%'))
+			</if>
+			<if test="status!=-1">and Status=#{status}</if>
+		</where>
+	</select>
+
+	<select id="judgeIsExists" resultType="emp"
+		parameterType="String">
+		select * from EmpBaseInfo where account=#{account}
+	</select>
+
+	<select id="getEmpCode" resultType="int">
+		SELECT MAX(CAST(CODE AS SIGNED)) CODE FROM EmpBaseInfo
+	</select>
+	
+	<select id="getEmpById" resultType="emp"
+		parameterType="String">
+		select * from EmpBaseInfo where ID=#{Id}
+	</select>
+
+	<insert id="insertEmployee">
+		<selectKey keyProperty="id" resultType="String"
+			order="BEFORE">
+			SELECT REPLACE(UUID(),'-','') FROM DUAL
+		</selectKey>
+		insert into EmpBaseInfo
+		(id,code,name,account,sex,age,address,mobile,photo,birth,remark)
+		values
+		(#{id},#{code},#{name},#{account},#{sex},#{age},#{address},#{mobile},#{photo},#{birth},#{remark})
+	</insert>
+	
+	<update id="modifyEmployee">
+		update EmpBaseInfo set sex=#{sex},age=#{age},address=#{address},mobile=#{mobile},photo=#{photo},
+		birth=#{birth},remark=#{remark} where id=#{id}
+	</update>
+</mapper>

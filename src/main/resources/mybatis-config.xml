@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="config.properties"></properties>
+	<!-- 类 使用@Alias 注解  -->
+	<typeAliases>
+		<typeAlias type="com.jr.model.DepartmentInfo" alias="dept" />
+		<typeAlias type="com.jr.model.EmpBaseInfo" alias="emp" />
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- 扫描路径下的mapper映射文件 -->
+		<!-- <mapper resource="com/jr/service/*.xml" /> -->
+		<!--扫描包下的接口文件 -->
+		<package name="com.jr.service" />
+
+		<!-- <mapper resource="com/jr/service/DeptMapper.xml"/> -->
+	</mappers>
+
+</configuration>

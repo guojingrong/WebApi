@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jr.service.DeptPositionMapper">
+	<resultMap type="map" id="hashDeptPosition">
+		<result column="deptCode" property="deptCode"/>
+		<result column="deptName" property="deptName"/>
+		<result column="positionCode" property="positionCode"/>
+		<result column="positionName" property="positionName"/>
+	</resultMap>
+	<select id="getDeptPosition" resultMap="hashDeptPosition">
+		SELECT d.deptCode,d.deptName,p.positionCode positionCode,p.positionName FROM Deptmentinfo d
+		LEFT JOIN deptposition dp ON d.id=dp.deptid
+		LEFT JOIN positional p ON p.positionCode=dp.positionid
+	</select>
+	<select id="getPositionByDept" resultType="com.jr.model.Positional" parameterType="String">
+		SELECT p.positionCode ,p.positionName FROM Deptmentinfo d
+		LEFT JOIN deptposition dp ON d.id=dp.deptid
+		LEFT JOIN positional p ON p.positionCode=dp.positionid
+		WHERE DeptCode=#{code}
+	</select>
+	<select id="getPosition" resultType="com.jr.model.Positional" parameterType="map">
+		SELECT * FROM Positional
+		<where>
+			<if test="key!=''">and (PositionCode=#{key} or PositionName like CONCAT(CONCAT('%',#{key}),'%'))</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jr.service.DeptMapper">
+	<select id="getDeptList" resultType="dept">
+		SELECT * FROM DeptmentInfo
+		ORDER BY DeptCode
+	</select>
+	
+	<!--多参数分页使用HashMap -->
+	<select id="getDeptListByPage" resultType="dept"
+		parameterType="java.util.HashMap">
+		SELECT * FROM DeptmentInfo
+		<where>
+			<if test="deptCode!='' ">AND DeptCode=#{deptCode}</if>
+			<if test="status !=-1 ">AND STATUS=#{status}</if>
+		</where>
+		ORDER BY DeptCode LIMIT #{skipNum},#{pageSize}
+	</select>
+
+	<select id="getDeptCount" resultType="Integer"
+		parameterType="java.util.HashMap">
+		SELECT COUNT(deptCode) FROM DeptmentInfo
+		<where>
+			<if test="deptCode!='' ">AND DeptCode=#{deptCode}</if>
+			<if test="status!=-1">AND STATUS=#{status}</if>
+		</where>
+	</select>
+
+	<insert id="insertDept">
+		<selectKey keyProperty="id" resultType="String"
+			order="BEFORE">
+			SELECT REPLACE(UUID(),'-','') FROM DUAL
+		</selectKey>
+		insert into DeptmentInfo VALUES
+		(#{id},#{deptCode},#{deptName},#{status})
+	</insert>
+	
+	<update id="modifyDept">
+		update DeptmentInfo set status=#{status} where id=#{id}
+	</update>
+	
+	<update id="modifyStatus">
+		update DeptmentInfo set status=0 where id=#{id}
+	</update>
+
+	<select id="getDeptByCode" parameterType="String"
+		resultType="dept">
+		SELECT * FROM DeptmentInfo WHERE DeptCode= #{code}
+	</select>
+
+	<select id="getDeptById" parameterType="String"
+		resultType="dept">
+		SELECT * FROM DeptmentInfo WHERE ID= #{id}
+	</select>
+</mapper>
