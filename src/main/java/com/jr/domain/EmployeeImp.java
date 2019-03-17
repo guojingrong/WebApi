@@ -105,6 +105,7 @@ public class EmployeeImp implements EmployeeMapper {
 		} finally {
 			// TODO: handle finally clause
 			session.close();
+			
 		}
 	}
 

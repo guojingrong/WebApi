@@ -3,10 +3,7 @@ package com.jr.api;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.validation.constraints.Null;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

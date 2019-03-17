@@ -1,7 +1,6 @@
 package com.jr.service;
 
 import java.util.HashMap;
-import java.util.List;
 
 import com.jr.model.EmpBaseInfo;
 import com.jr.model.PageResult;

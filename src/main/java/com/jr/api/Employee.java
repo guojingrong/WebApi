@@ -9,13 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.apache.catalina.mbeans.MBeanDumper;
-import org.apache.ibatis.scripting.xmltags.VarDeclSqlNode;
-
 import com.jr.domain.EmployeeImp;
 import com.jr.model.EmpBaseInfo;
-import com.jr.model.PageResult;
 import com.jr.model.ReturnInfo;
 
 import net.sf.json.JSONObject;
