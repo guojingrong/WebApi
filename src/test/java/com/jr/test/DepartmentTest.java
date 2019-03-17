@@ -1,18 +1,12 @@
 package com.jr.test;
 
-import java.io.Console;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
-
-import com.jr.domain.DepartmentImp;
 import com.jr.domain.DeptPositionImp;
-import com.jr.model.DepartmentInfo;
-import com.jr.mysql.SessionFactory;
 
 public class DepartmentTest {
 	@Test
