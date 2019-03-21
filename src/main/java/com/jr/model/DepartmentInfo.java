@@ -2,14 +2,20 @@ package com.jr.model;
 
 import org.apache.ibatis.type.Alias;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * @author Administrator
  *
  */
 @Alias("dept")
+@ApiModel(value="DepartmentInfo")
 public class DepartmentInfo {
+	@ApiModelProperty(value="ID")
 	private String id;
+	@ApiModelProperty(value="≤ø√≈±‡∫≈")
 	private String deptCode;
 	private String deptName;
 	private Integer status;

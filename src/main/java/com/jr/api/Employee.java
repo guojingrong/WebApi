@@ -9,21 +9,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.jr.Common.AuthUser;
 import com.jr.domain.EmployeeImp;
 import com.jr.model.EmpBaseInfo;
 import com.jr.model.ReturnInfo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
-@Path("emp")
+@Path("/emp")
+@AuthUser
+@Api(value="员工数据处理接口")
 public class Employee {
 	
 	private EmployeeImp employeeImp=new EmployeeImp();
 	
 	@POST
-	@Path("pagelist")
+	@Path("/pagelist")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value="返回员工列表",response=Object.class)
 	public ReturnInfo getEmpListByPage(JSONObject obj) {
 		try {
 			HashMap<String, Object> map=new HashMap<String, Object>();
@@ -40,9 +47,10 @@ public class Employee {
 	}
 	
 	@POST
-	@Path("insert")
+	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value="添加员工",response=ReturnInfo.class)
 	public ReturnInfo insertEmployeeInfo(EmpBaseInfo emp) {
 		try {
 			boolean v=employeeImp.judgeIsExists(emp.getAccount());
@@ -56,9 +64,10 @@ public class Employee {
 	}
 	
 	@POST
-	@Path("modify")
+	@Path("/modify")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value="修改员工",response=ReturnInfo.class)
 	public ReturnInfo modifyEmployeeInfo(EmpBaseInfo emp) {
 		try {
 			int count=employeeImp.modifyEmployee(emp);
@@ -70,9 +79,10 @@ public class Employee {
 	}
 	
 	@GET
-	@Path("code")
+	@Path("/code")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value="获取员工编号",response=ReturnInfo.class)
 	public ReturnInfo getEmpCode() {
 		try {
 			String code=employeeImp.getEmpCode();
@@ -84,9 +94,10 @@ public class Employee {
 	}
 	
 	@GET
-	@Path("getby/{id}")
+	@Path("/getby/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value="根据员工ID返回员工信息",response=ReturnInfo.class)
 	public ReturnInfo getEmpById(@PathParam("id") String id) {
 		try {
 			EmpBaseInfo empBaseInfo=employeeImp.getEmpById(id);
