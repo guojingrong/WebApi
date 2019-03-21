@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jr.service.ChartMapper">
+	<select id="sumChartForAge" resultType="map">
+		SELECT 
+			SUM(CASE WHEN age&gt;=18 AND age&lt;25 THEN 1 ELSE 0 END) A,
+			SUM(CASE WHEN age&gt;=25 AND age&lt;32 THEN 1 ELSE 0 END) B,
+			SUM(CASE WHEN age&gt;=32 AND age&lt;39 THEN 1 ELSE 0 END) C,
+			SUM(CASE WHEN age&gt;=39 AND age&lt;46 THEN 1 ELSE 0 END) D,
+			SUM(CASE WHEN age&gt;=39 AND age&lt;46 THEN 1 ELSE 0 END) E
+		FROM EmpBaseInfo
+	</select>
+</mapper>
