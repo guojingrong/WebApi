@@ -20,6 +20,8 @@ import com.jr.model.Positional;
 import com.jr.model.ReturnInfo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 
@@ -36,6 +38,7 @@ public class Depart {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@ApiOperation(value="根据部门code返回部门信息",response=ReturnInfo.class)
+	@ApiImplicitParams(@ApiImplicitParam(name="code",value="部门编号"))
 	public ReturnInfo getDeptByCode(@PathParam("code") String code) {
 		try {
 			return new ReturnInfo(true, null, deptImp.getDeptByCode(code));

@@ -1,7 +1,3 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
 	<servlet>
@@ -9,7 +5,7 @@
 		<servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
 		<init-param>
 			<param-name>api.version</param-name>
-			<param-value>1.0.0</param-value>
+			<param-value>1.0.1</param-value>
 		</init-param>
 		<init-param>
 			<param-name>swagger.api.basepath</param-name>
