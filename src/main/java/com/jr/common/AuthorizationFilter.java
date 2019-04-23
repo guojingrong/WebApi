@@ -1,4 +1,4 @@
-package com.jr.Common;
+package com.jr.common;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

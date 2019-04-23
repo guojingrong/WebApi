@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.jr.Common.AuthUser;
+import com.jr.common.AuthUser;
 import com.jr.domain.ChartImp;
 import com.jr.model.ReturnInfo;
 

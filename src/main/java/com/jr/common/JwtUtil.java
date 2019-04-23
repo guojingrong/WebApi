@@ -1,4 +1,4 @@
-package com.jr.Common;
+package com.jr.common;
 
 import java.util.Date;
 import java.util.HashMap;

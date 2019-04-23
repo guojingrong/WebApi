@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.jr.Common.JwtUtil;
+import com.jr.common.JwtUtil;
 import com.jr.model.TokenOf;
 
 import io.jsonwebtoken.Claims;

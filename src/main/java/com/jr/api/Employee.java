@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.jr.Common.AuthUser;
+import com.jr.common.AuthUser;
 import com.jr.domain.EmployeeImp;
 import com.jr.model.EmpBaseInfo;
 import com.jr.model.ReturnInfo;

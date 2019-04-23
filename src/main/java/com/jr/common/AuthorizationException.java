@@ -1,4 +1,4 @@
-package com.jr.Common;
+package com.jr.common;
 
 public class AuthorizationException extends RuntimeException{
 
